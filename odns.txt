@@ -1,0 +1,50 @@
+import java.util.*;
+import java.net.*;
+
+
+public class dnsfind
+
+{
+
+public static void main(String args[])
+{
+Scanner sc=new Scanner(System.in);
+
+int ch=sc.nextInt();
+
+if(ch==1){
+	Scanner scc=new Scanner(System.in);
+	String host=scc.nextLine();
+	try{
+		InetAddress address=InetAddress.getByName(host);
+		System.out.println("ip idree"+address.getHostAddress());
+		System.out.println("host name"+address.getHostName());
+	}
+	catch(Exception e){
+		System.out.println("host not found");
+	}
+}
+
+else{
+Scanner sccc=new Scanner(System.in);
+String host=sccc.nextLine();
+try{
+	InetAddress address=InetAddress.getByName(host);
+	System.out.println("host name"+address.getHostName());
+	System.out.println("ip address"+address.getHostAddress());
+	
+
+}
+catch(Exception e)
+{
+	System.out.println("not find");
+}
+
+
+
+
+}
+
+}
+
+}
