@@ -1,0 +1,74 @@
+Write a program using TCP sockets for wired network to implement peer to Peer Chat
+--------------------------------------------------------------------------------------------
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class Server{
+
+public static void main(String args[]) throws Exception
+{
+
+   ServerSocket ss=new ServerSocket(3333);
+   Socket s=ss.accept();
+   DataInputStream din=new DataInputStream(s.getInputStream());
+   DataOutputStream dout=new DataOutputStream(s.getOutputStream());
+   Scanner in=new Scanner(System.in);
+  
+   String str="";
+   String str2="";
+  
+
+while(str2!="end")
+{
+   str2=din.readUTF();
+   System.out.println("Client Says:"+str2);
+   str=in.nextLine();
+   dout.writeUTF(str);
+   dout.flush();
+
+}
+  
+  din.close();
+  s.close();
+  ss.close();
+}
+}
+
+------------------------------------------------------------------------------------------------
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class Client {
+
+public static void main(String args[])throws Exception
+{
+   Socket s = new Socket("localhost",3333);
+   DataInputStream din= new DataInputStream(s.getInputStream());
+   DataOutputStream dout= new DataOutputStream(s.getOutputStream());
+   Scanner in=new Scanner(System.in);
+   
+   String str="";
+   String str2="";
+   
+   
+  while(str!="end")
+{
+   
+  str2=in.nextLine();
+  dout.writeUTF(str2);
+  dout.flush();
+  str=din.readUTF();
+  System.out.println("server says:"+str);
+ 
+}
+
+din.close();
+s.close();
+
+}
+}
+--------------------------------------------------------------------------------------------------------
